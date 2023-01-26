@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import * as S from '../styles/home.styles'
+// import Button from '@mui/material/Button';
+import { Header, Button, InputText } from '@/components';
 
 export default function Home() {
   return (
@@ -11,7 +13,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <S.Container>
-        Hello World !!
+        <Header>
+          <S.ContentHeader>
+            <S.ImgLogo src='./marvel-logo.png' alt='marvel' />
+            <S.SearchHero>
+              <InputText labelText='Nome'/>
+              <Button label='Pesquisar' action={() => alert('Testando Botão')} />
+            </S.SearchHero>
+          </S.ContentHeader>
+        </Header>
       </S.Container>
     </>
   )
