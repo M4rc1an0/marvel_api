@@ -1,14 +1,8 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-    width: 100%;
-    height: 100vh;
-    background-color: #F2F4F6;
-`
-
 export const ContentHeader = styled.div`
     width: 100%;
-    padding: 15px;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
