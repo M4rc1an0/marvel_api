@@ -21,10 +21,12 @@ export const ContentIntroduction = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 `
 
 export const ContentCard = styled.div`
     display: flex;
+    width: 700px;
     flex-direction: column;
     justify-content: center;
     align-items: center;

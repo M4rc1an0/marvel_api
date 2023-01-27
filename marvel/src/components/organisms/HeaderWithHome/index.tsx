@@ -2,15 +2,14 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 
-import Button from "@/components/molecules/Button";
+import ButtonAction from "@/components/molecules/ButtonAction";
 import InputText from "@/components/molecules/InputText";
 import Header from "@/components/molecules/Header";
 import * as S from "./styles";
-import { changeTeste } from "@/storeConfig/userSlice";
+import Link from "@/components/atoms/Link";
 
 const HeaderWithHome = () => {
   const [search, setSearch] = useState('')
-  // const dispatch = useDispatch()
   const router = useRouter();
 
   const submitSearch = () => {
@@ -20,10 +19,12 @@ const HeaderWithHome = () => {
   return (
     <Header>
       <S.ContentHeader>
-        <S.ImgLogo src="./marvel-logo.png" alt="marvel" />
+        <Link href="/">
+          <S.ImgLogo src="./marvel-logo.png" alt="marvel" />
+        </Link>
         <S.SearchHero>
           <InputText labelText="Personagem" change={(e: any) => setSearch(e.target.value)} />
-          <Button label="Pesquisar" action={(event: React.ChangeEvent<HTMLInputElement>) => {
+          <ButtonAction label="Pesquisar" action={(event: React.ChangeEvent<HTMLInputElement>) => {
             event.preventDefault()
             submitSearch()}} />
         </S.SearchHero>

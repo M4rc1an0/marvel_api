@@ -3,7 +3,7 @@ import CardContent from "@/components/molecules/CardContent";
 import TextParagraph from "@/components/atoms/TextParagraph";
 import HeaderWithHome from "@/components/organisms/HeaderWithHome";
 import FooterDeveloper from "@/components/organisms/FooterDeveloper";
-import Button from "@/components/molecules/Button";
+import ButtonAction from "@/components/molecules/ButtonAction";
 import Router from "next/router";
 
 export const Introduction = () => {
@@ -27,7 +27,7 @@ export const Introduction = () => {
               />
             </S.ContentCard>
             <S.ContentButtons>
-            <Button label="Personagens" action={(event: React.ChangeEvent<HTMLInputElement>) => {
+            <ButtonAction label="Personagens" action={(event: React.ChangeEvent<HTMLInputElement>) => {
             event.preventDefault()
             Router.push('characters')}} />
             </S.ContentButtons>
