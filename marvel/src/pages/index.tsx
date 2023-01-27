@@ -13,7 +13,7 @@ export default function Home() {
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
         ></link>
-        <link rel="icon" href="iron-head.png" />
+        <link rel="icon" href="favicon.ico" />
       </Head>
       <Introduction />
     </>

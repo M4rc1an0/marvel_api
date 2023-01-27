@@ -2,7 +2,7 @@ import * as S from './styles'
 
 type InputProps = {
     labelText: string
-    change?: () => void
+    change?: (e: any) => void
 }
 
 const InputText = ({labelText, change}: InputProps) => {
