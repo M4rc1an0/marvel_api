@@ -8,5 +8,5 @@ export const Container = styled.div`
 `
 
 export const ContentCard = styled.div`
-    padding: 20px;
+    padding: 25px;
 `

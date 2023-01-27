@@ -2,7 +2,7 @@ import * as S from './styles'
 
 type ButtonProps = {
     label: string
-    action?: () => void
+    action?: (event: any) => void | undefined
 }
 
 const Button = ({label, action}: ButtonProps) => {
