@@ -1,21 +1,27 @@
 import styled from 'styled-components'
 
+export const ComeBack = styled.div`
+    width: 120px;
+    margin: 20px 50px;
+`
+
 export const ContentInfo = styled.div`
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
 `
 
 export const Column = styled.div`
     display: flex;
     flex-direction: column;
-    margin: 50px;
+    margin: 0 50px;
 `
 
 export const ContentPerson = styled.div`
     display: flex;
     width: 100%;
-    margin: 20px 0;
+    margin-bottom: 20px;
 `
 
 export const Description = styled.div`

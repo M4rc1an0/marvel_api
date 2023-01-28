@@ -11,6 +11,10 @@ export const ContentCards = styled.div`
     flex-wrap: wrap;
 `
 
+export const CardClick = styled.div`
+    cursor: pointer;
+`
+
 export const InformationTable = styled.div`
     display: flex;
     background-color: #fff;
@@ -26,4 +30,10 @@ export const DetailsPerson = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-`   
+`
+
+export const ContainerButton = styled.div`
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+`

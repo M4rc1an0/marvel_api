@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 
 type ButtonProps = {
     label: string
-    action?: (event: any) => void | undefined
+    action?: any
 }
 
 const ButtonAction = ({label, action}: ButtonProps) => {

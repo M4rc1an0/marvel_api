@@ -24,7 +24,7 @@ export const Introduction = () => {
           <S.ContentButtons>
             <ButtonAction label="Characters" action={(event: React.ChangeEvent<HTMLInputElement>) => {
               event.preventDefault()
-              Router.push('characters')
+              Router.push('person')
             }} />
           </S.ContentButtons>
         </CardContent>
