@@ -10,7 +10,7 @@ import * as S from './styles'
 
 const Info = () => {
     const [infoPerson, setInfoPerson] = useState([])
-    const [filterSearch, setFilterSearch] = useState<any>()
+    const [filterSearch, setFilterSearch] = useState<any>('')
     const [idPerson, setIdPerson] = useState<any>()
     const router = useRouter();
 
@@ -34,17 +34,20 @@ const Info = () => {
         }
     },[idPerson])
 
-        // useEffect(() => {
-        //     axios.get(baseURL)
-        //         .then((response) => {
-        //             setInfoPerson(response?.data?.data?.results);
-        //         }).catch();
-        // }, [idPerson !== undefined])
+    console.log(filterSearch, 'FILTERSEARCH')
+
+    const redirectSearch = () => {
+        if (filterSearch === undefined || filterSearch === 'undefined') {
+            router.push('/person')
+        } else {
+            router.push(`/person?character=${filterSearch}`)
+        }
+    }
 
     return (
         <LayoutBase>
             <S.ContentInfo>
-                <S.ComeBack onClick={() => router.push(`/person?character=${filterSearch}`)}>
+                <S.ComeBack onClick={() => redirectSearch()}>
                     <Icon type="back" text="Return" typeParagraph="h4" />
                 </S.ComeBack>
                 {infoPerson &&
@@ -52,7 +55,7 @@ const Info = () => {
                         return (
                             <S.Column key={index}>
                                 <S.ContentPerson>
-                                    <CardImage width={300} url={`${person.thumbnail.path}.${person.thumbnail.extension}`} />
+                                    <CardImage url={`${person.thumbnail.path}.${person.thumbnail.extension}`} />
                                     <S.Description>
                                         <TextParagraph text={person.name} type="h2" />
                                         <TextParagraph text={person.description ? person.description : 'There is no description...'} type="h5" />

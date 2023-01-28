@@ -9,6 +9,14 @@ export const ContentFooter = styled.div`
 
 export const AuthorDeveloper = styled.div`
     display: flex;
+
+    @media (max-width: 375px) {
+        div{
+            h6 {
+                font-size: 12px;
+            }
+        }
+    }
 `
 
 export const NetworkSocial = styled.div`

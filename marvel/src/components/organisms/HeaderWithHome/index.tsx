@@ -14,6 +14,7 @@ const HeaderWithHome = () => {
 
   const submitSearch = () => {
     router.push(`/person?character=${search}`)
+    localStorage.setItem('person', search);
   }
 
   return (

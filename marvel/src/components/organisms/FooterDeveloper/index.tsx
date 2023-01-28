@@ -10,8 +10,6 @@ const FooterDeveloper = () => {
                     <TextParagraph type="h6" color='#fff' text='© 2023 -'/>
                     <TextParagraph type="h6" color='#fff' text='Desenvolvido por Rogério Marciano'/>
                 </S.AuthorDeveloper>
-                <S.NetworkSocial>
-                </S.NetworkSocial>
             </S.ContentFooter>
         </Footer>
     )

@@ -9,9 +9,9 @@ export const Introduction = () => {
   return (
     <LayoutBase>
       <S.ContentIntroduction>
-        <CardContent>
+        <CardContent noBorder>
           <S.ContentCard>
-            <S.ImgBackground width={300} src="escudo.png" />
+            <S.ImgBackgroundShield src="escudo.png" alt="escudo-capitao"/>
             <TextParagraph type="h1" text="MARVEL API" />
             <TextParagraph
               type="h4"

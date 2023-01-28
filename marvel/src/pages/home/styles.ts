@@ -5,7 +5,7 @@ type ImgProps = {
 }
 
 export const ContentIntroduction = styled.div`
-    width: 100%;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,14 +13,13 @@ export const ContentIntroduction = styled.div`
 
 export const ContentCard = styled.div`
     display: flex;
-    width: 700px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 `
 
 export const ContentButtons = styled.div`
-    width: 100%;
+    /* width: 50%; */
     margin-top: 50px;
     display: flex;
     justify-content: space-around;
@@ -28,8 +27,23 @@ export const ContentButtons = styled.div`
 
 export const ContentImg = styled.div`
     padding-left: 100px;
+
+    @media (max-width: 1200px) {
+        display: none;
+    }
 `
 
 export const ImgBackground = styled.img<ImgProps>`
     width: ${(props) => props.width ? props.width : '100%'};
+
+    @media (max-width: 1366px) {
+        width: 90%;
+    }
+`
+
+export const ImgBackgroundShield = styled.img<ImgProps>`
+    width: 300px;
+
+    @media (max-width: 1366px) {
+    }
 `
