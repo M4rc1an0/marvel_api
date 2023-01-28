@@ -1,44 +1,37 @@
 import * as S from "./styles";
 import CardContent from "@/components/molecules/CardContent";
 import TextParagraph from "@/components/atoms/TextParagraph";
-import HeaderWithHome from "@/components/organisms/HeaderWithHome";
-import FooterDeveloper from "@/components/organisms/FooterDeveloper";
 import ButtonAction from "@/components/molecules/ButtonAction";
 import Router from "next/router";
+import LayoutBase from "@/components/templates/LayoutBase";
 
 export const Introduction = () => {
   return (
-    <S.Container>
-      <S.ContentHome>
-        <HeaderWithHome />
-
-        <S.ContentIntroduction>
-          <CardContent>
-            <S.ContentCard>
-              <S.ImgBackground width={300} src="escudo.png" />
-              <TextParagraph type="h1" text="MARVEL API" />
-              <TextParagraph
-                type="h4"
-                text="A API da Marvel Comics permite que desenvolvedores 
-              em qualquer lugar acessem informações sobre a vasta biblioteca 
-              de quadrinhos da Marvel - desde o que está por vir até 70 anos 
-              atrás."
-
-              />
-            </S.ContentCard>
-            <S.ContentButtons>
-            <ButtonAction label="Personagens" action={(event: React.ChangeEvent<HTMLInputElement>) => {
-            event.preventDefault()
-            Router.push('characters')}} />
-            </S.ContentButtons>
-          </CardContent>
-          <S.ContentImg>
-            <S.ImgBackground src="iron-man.png" alt="iron-man" />
-          </S.ContentImg>
-        </S.ContentIntroduction>
-
-        <FooterDeveloper />
-      </S.ContentHome>
-    </S.Container>
+    <LayoutBase>
+      <S.ContentIntroduction>
+        <CardContent>
+          <S.ContentCard>
+            <S.ImgBackground width={300} src="escudo.png" />
+            <TextParagraph type="h1" text="MARVEL API" />
+            <TextParagraph
+              type="h4"
+              text="The Marvel Comics API allows developers 
+              everywhere to access information about Marvel's 
+              vast library of comics—from what's coming up, to 
+              70 years ago."
+            />
+          </S.ContentCard>
+          <S.ContentButtons>
+            <ButtonAction label="Characters" action={(event: React.ChangeEvent<HTMLInputElement>) => {
+              event.preventDefault()
+              Router.push('characters')
+            }} />
+          </S.ContentButtons>
+        </CardContent>
+        <S.ContentImg>
+          <S.ImgBackground src="iron-man.png" alt="iron-man" />
+        </S.ContentImg>
+      </S.ContentIntroduction>
+    </LayoutBase>
   );
 };

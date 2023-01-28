@@ -2,7 +2,7 @@ import * as S from "./styles";
 
 type LinkProps = {
     children?: React.ReactNode
-    href?: string
+    href?: string 
 }
 
 const Link = ({children, href}: LinkProps) => {

@@ -1,15 +1,10 @@
-import FooterDeveloper from '@/components/organisms/FooterDeveloper'
-import HeaderWithHome from '@/components/organisms/HeaderWithHome'
-import * as S from './styles'
+import LayoutBase from '@/components/templates/LayoutBase'
 
 const Characters = () => {
     return (
-        <S.Container>
-            <S.ContentHome>
-                <HeaderWithHome />
-                <FooterDeveloper />
-            </S.ContentHome>
-        </S.Container>
+        <LayoutBase>
+
+        </LayoutBase>
     )
 }
 

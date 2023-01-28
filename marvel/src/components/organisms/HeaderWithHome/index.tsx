@@ -23,8 +23,8 @@ const HeaderWithHome = () => {
           <S.ImgLogo src="./marvel-logo.png" alt="marvel" />
         </Link>
         <S.SearchHero>
-          <InputText labelText="Personagem" change={(e: any) => setSearch(e.target.value)} />
-          <ButtonAction label="Pesquisar" action={(event: React.ChangeEvent<HTMLInputElement>) => {
+          <InputText labelText="Character" change={(e: any) => setSearch(e.target.value)} />
+          <ButtonAction label="Search" action={(event: React.ChangeEvent<HTMLInputElement>) => {
             event.preventDefault()
             submitSearch()}} />
         </S.SearchHero>

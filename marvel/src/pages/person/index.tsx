@@ -1,43 +1,47 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { publicKey, privateKey } from "@/utils/keys";
-import FooterDeveloper from '@/components/organisms/FooterDeveloper'
-import HeaderWithHome from '@/components/organisms/HeaderWithHome'
+import { publicKey, time, hash } from "@/utils/keys";
 import * as S from './styles'
-import md5 from "md5";
+import CardImage from "@/components/atoms/CardImage";
+import CardContent from "@/components/molecules/CardContent";
+import TextParagraph from "@/components/atoms/TextParagraph";
+import LayoutBase from "@/components/templates/LayoutBase";
+import Link from "next/link";
 
 const Person = () => {
-  const [searchPerson, setSearchPerson] = useState();
+  const [searchPerson, setSearchPerson] = useState<any>();
   const router = useRouter();
   const { character } = router.query;
-  const time = Number(new Date());
-  const hash = md5(time + privateKey + publicKey);
-
-  console.log(character, "CARA");
-
   const baseURL = `http://gateway.marvel.com/v1/public/characters?nameStartsWith=${character}&ts=${time}&apikey=${publicKey}&hash=${hash}`;
 
   useEffect(() => {
-    axios.get(baseURL).then((data) => {
-      setSearchPerson(data?.data?.data?.results);
-    });
-  }, []);
-
-  console.log(searchPerson, "searchPerson");
+    axios.get(baseURL)
+      .then((response) => {
+        setSearchPerson(response?.data?.data?.results);
+      }).catch(() => alert('No character with that name found !!'));
+  }, [character]);
 
   return (
-    <S.Container>
-      <S.ContentHome>
-        <HeaderWithHome />
-        <S.ContentCards>
-          {searchPerson?.map((person: any, index: string) => {
-            return person.name
-          })}
-        </S.ContentCards>
-        <FooterDeveloper />
-      </S.ContentHome>
-    </S.Container>
+    <LayoutBase>
+      <S.ContentTitle>
+        <TextParagraph text='choose a character' type="h1" />
+      </S.ContentTitle>
+      <S.ContentCards>
+        {searchPerson?.map((person: any, index: string) => {
+          return (
+            <Link href={`info?id=${person.id}`} key={index}>
+              <CardContent >
+                <S.DetailsPerson>
+                  <CardImage width={200} height={200} url={`${person.thumbnail.path}.${person.thumbnail.extension}`} />
+                  <TextParagraph text={person.name} type="h5" />
+                </S.DetailsPerson>
+              </CardContent>
+            </Link>
+          )
+        })}
+      </S.ContentCards>
+    </LayoutBase>
   );
 };
 

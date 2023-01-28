@@ -1,21 +1,29 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-    width: 100%;
-    height: 100vh;
-`
-
-export const ContentHome = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
+export const ContentTitle = styled.div`
+    margin: 20px 0;
 `
 
 export const ContentCards = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
 `
+
+export const InformationTable = styled.div`
+    display: flex;
+    background-color: #fff;
+    box-shadow: 0px 10px 40px rgb(41 50 65 / 6%);
+    border-radius: 14px;
+    width: 100%;
+    margin: 10px;
+    padding: 20px;
+`
+
+export const DetailsPerson = styled.div`
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`   
