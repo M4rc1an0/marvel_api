@@ -11,7 +11,7 @@ export const Introduction = () => {
       <S.ContentIntroduction>
         <CardContent noBorder>
           <S.ContentCard>
-            <S.ImgBackgroundShield src="escudo.png" alt="escudo-capitao"/>
+            <S.ImgBackgroundShield src="shield.png" alt="shield-capitao"/>
             <TextParagraph type="h1" text="MARVEL API" />
             <TextParagraph
               type="h4"

@@ -38,6 +38,7 @@
     "@types/jest": "^29.4.0",
     "@types/md5": "^2.3.2",
     "@types/styled-components": "^5.1.26",
-    "jest": "^29.4.1"
+    "jest": "^29.4.1",
+    "jest-environment-jsdom": "^29.4.1"
   }
 }

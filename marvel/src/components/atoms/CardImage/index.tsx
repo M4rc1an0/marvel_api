@@ -13,6 +13,7 @@ const CardImage = ({url, width, height}: CardImageProps) => {
             height={height} 
             src={url} 
             alt={`${url}_img`}
+            data-testid='cardImage'
         />
     )
 }

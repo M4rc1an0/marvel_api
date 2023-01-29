@@ -1,12 +1,12 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
 
-import ButtonAction from "@/components/molecules/ButtonAction";
-import InputText from "@/components/molecules/InputText";
-import Header from "@/components/molecules/Header";
+import ButtonAction from "../../molecules/ButtonAction";
+import InputText from "../../molecules/InputText";
+import Header from "../../molecules/Header";
+import Link from "../../atoms/Link";
+
 import * as S from "./styles";
-import Link from "@/components/atoms/Link";
 
 const HeaderWithHome = () => {
   const [search, setSearch] = useState('')

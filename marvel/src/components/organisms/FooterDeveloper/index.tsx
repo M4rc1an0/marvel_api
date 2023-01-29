@@ -1,5 +1,5 @@
-import Footer from "@/components/molecules/Footer"
-import TextParagraph from "@/components/atoms/TextParagraph"
+import Footer from "../../molecules/Footer"
+import TextParagraph from "../../atoms/TextParagraph"
 import * as S from './styles'
 
 const FooterDeveloper = () => {
