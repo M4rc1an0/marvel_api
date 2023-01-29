@@ -1,12 +1,14 @@
-import CardImage from "../../components/atoms/CardImage";
-import Icon from "../../components/atoms/Icon";
-import TextParagraph from "../../components/atoms/TextParagraph";
-import CardContent from "../../components/molecules/CardContent";
+import Icon from "../../components/molecules/Icon";
 import LayoutBase from "../../components/templates/LayoutBase";
-import api from "../../services/api";
-import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import List from "../../components/organisms/List";
+
 import * as S from './styles'
+
+import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+
+import characterApi from "../../storeConfig/apiSlice";
+import CharacterCard from "../../components/organisms/CharacterCard";
 
 const Info = () => {
     const [infoPerson, setInfoPerson] = useState([])
@@ -20,19 +22,21 @@ const Info = () => {
             setIdPerson(localStorage.getItem('id'));
         }
     }, [])
-        
+    
+    const { data } = characterApi.useGetCharacterSingleQuery(idPerson)
+
     const searchInfo = useCallback(() => {
-        api.get(`/characters/${idPerson}`)
-        .then((response) => {
-            setInfoPerson(response?.data?.data?.results);
-        }).catch();
-    }, [idPerson !== undefined])
+        if (data) {
+            setInfoPerson(data?.data?.results)
+        }
+    }, [data])
 
     useEffect(() => {
-        if(idPerson !== undefined) {
+        if (data !== undefined) {
             searchInfo()
         }
-    },[idPerson])
+    }, [data])
+    
 
     const redirectSearch = () => {
         if (filterSearch === undefined || filterSearch === 'undefined') {
@@ -49,85 +53,15 @@ const Info = () => {
                     <Icon type="back" text="Return" typeParagraph="h4" />
                 </S.ComeBack>
                 {infoPerson &&
-                    infoPerson.map((person: any, index: any) => {
+                    infoPerson.map((character: any, index: any) => {
                         return (
                             <S.Column key={index}>
-                                <S.ContentPerson>
-                                    <CardImage url={`${person.thumbnail.path}.${person.thumbnail.extension}`} />
-                                    <S.Description>
-                                        <TextParagraph text={person.name} type="h2" />
-                                        <TextParagraph text={person.description ? person.description : 'There is no description...'} type="h5" />
-                                    </S.Description>
-                                </S.ContentPerson>
+                                <CharacterCard data={character} />
                                 <S.Appearances>
-                                    <CardContent noBorder>
-                                        <TextParagraph text='Comics' type="h2" bold />
-                                        <S.UlCategory>
-                                            {person.comics.items.length !== 0 ? person.comics.items.map((comic: any, index: string) => {
-                                                return (
-                                                    <S.LiCategory key={index}>
-                                                        {index + 1}- {comic.name}
-                                                    </S.LiCategory>
-                                                )
-                                            })
-                                                :
-                                                <S.LiCategory>
-                                                    No info
-                                                </S.LiCategory>
-                                            }
-                                        </S.UlCategory>
-                                    </CardContent>
-                                    <CardContent noBorder>
-                                        <TextParagraph text='Events' type="h2" bold />
-                                        <S.UlCategory>
-                                            {person.events.items.length !== 0 ? person.events.items.map((event: any, index: string) => {
-                                                return (
-                                                    <S.LiCategory key={index}>
-                                                        {index + 1}- {event.name}
-                                                    </S.LiCategory>
-                                                )
-                                            })
-                                                :
-                                                <S.LiCategory>
-                                                    No info
-                                                </S.LiCategory>
-                                            }
-                                        </S.UlCategory>
-                                    </CardContent>
-                                    <CardContent noBorder>
-                                        <TextParagraph text='Series' type="h2" bold />
-                                        <S.UlCategory>
-                                            {person.series.items.length ? person.series.items.map((serie: any, index: string) => {
-                                                return (
-                                                    <S.LiCategory key={index}>
-                                                        {index + 1}- {serie.name}
-                                                    </S.LiCategory>
-                                                )
-                                            })
-                                                :
-                                                <S.LiCategory>
-                                                    No info
-                                                </S.LiCategory>
-                                            }
-                                        </S.UlCategory>
-                                    </CardContent>
-                                    <CardContent noBorder>
-                                        <TextParagraph text='Stories' type="h2" bold />
-                                        <S.UlCategory>
-                                            {person.stories.items.length ? person.stories.items.map((storie: any, index: string) => {
-                                                return (
-                                                    <S.LiCategory key={index}>
-                                                        {index + 1}- {storie.name}
-                                                    </S.LiCategory>
-                                                )
-                                            })
-                                                :
-                                                <S.LiCategory>
-                                                    No info
-                                                </S.LiCategory>
-                                            }
-                                        </S.UlCategory>
-                                    </CardContent>
+                                    <List title='Comics' data={character.comics} />
+                                    <List title='Events' data={character.events} />
+                                    <List title='Series' data={character.series} />
+                                    <List title='Stories' data={character.stories} />
                                 </S.Appearances>
                             </S.Column>
                         )

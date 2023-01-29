@@ -6,17 +6,22 @@ const privateKey = '85178cbd4619277355f8e9d98948899001a3415f'
 const ts = Number(new Date());
 const hash = md5(ts + privateKey + publicKey);
 
-const personApi = createApi({
-    reducerPath: 'personApi',
+const characterApi = createApi({
+    reducerPath: 'characterApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://gateway.marvel.com/v1/public/'}),
     endpoints: (builder) => ({
-        getPerson: builder.query<any, void>({
+        getCharacters: builder.query<any, void>({
             query: () => `/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}`
         }),
-        getPersonId: builder.query<any, void>({
-            query: (id) => `/characters?nameStartsWith=${id}?ts=${ts}&apikey=${publicKey}&hash=${hash}`
+        getCharacterId: builder.query<any, string>({
+            query: (id) => `/characters?nameStartsWith=${id}&ts=${ts}&apikey=${publicKey}&hash=${hash}`
+        }),
+        getCharacterSingle: builder.query<any, string>({
+            query: (id) => `/characters/${id}?ts=${ts}&apikey=${publicKey}&hash=${hash}`
         })
     })
 })
 
-export default personApi
+export default characterApi
+
+export const { useGetCharactersQuery, useGetCharacterIdQuery, useGetCharacterSingleQuery } = characterApi

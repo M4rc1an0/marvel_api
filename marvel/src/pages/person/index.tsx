@@ -1,14 +1,16 @@
-import api from "../../services/api";
-import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
-import * as S from './styles'
-import CardImage from "../../components/atoms/CardImage";
 import TextParagraph from "../../components/atoms/TextParagraph";
 import LayoutBase from "../../components/templates/LayoutBase";
 import ButtonAction from "../../components/molecules/ButtonAction";
-import Card from "../../components/molecules/Card";
-import personApi from "@/storeConfig/apiSlice";
+import CharacterOption from "../../components/organisms/CharacterOption";
 
+import * as S from './styles'
+
+import { useRouter } from "next/router";
+import { useCallback, useEffect, useState } from "react";
+
+import api from "../../services/api";
+import characterApi from "../../storeConfig/apiSlice";
+ 
 const Person = () => {
   const [searchPerson, setSearchPerson] = useState<any>();
   const [personLength, setPersonLength] = useState<any>()
@@ -21,17 +23,22 @@ const Person = () => {
 
   const baseURL = character ? `/characters?nameStartsWith=${character}` : '/characters';
 
+  const { data: allCharacters } = characterApi.useGetCharactersQuery()
+  const { data: searchCharacters } = characterApi.useGetCharacterIdQuery(character)
+
   useEffect(() => {
     localStorage.setItem('person', character);
   }, [])
 
   useEffect(() => {
-    api.get(baseURL)
-      .then((response) => {
-        setSearchPerson(response?.data?.data?.results);
-        setPersonLength(response?.data?.data.total)
-      }).catch(() => alert('No character with that name found !!'));
-  }, [character]);
+    if (character) {
+      setSearchPerson(searchCharacters?.data?.results)
+      setPersonLength(searchCharacters?.data?.total)
+    } else {
+      setSearchPerson(allCharacters?.data?.results)
+      setPersonLength(allCharacters?.data?.total)
+    }
+  },[character, searchCharacters, allCharacters])
 
   const handleMore = useCallback(async () => {
     try {
@@ -58,17 +65,7 @@ const Person = () => {
           <S.ContentCards>
             {searchPerson?.map((person: any, index: string) => {
               return (
-                <S.CardClick onClick={() => {
-                  router.push(`info?id=${person.id}`)
-                  localStorage.setItem('id', person.id);
-                }} key={index}>
-                  <Card noBorder>
-                    <S.DetailsPerson>
-                      <CardImage width={200} height={200} url={`${person.thumbnail.path}.${person.thumbnail.extension}`} />
-                      <TextParagraph text={person.name} type="h5" />
-                    </S.DetailsPerson>
-                  </Card>
-                </S.CardClick>
+                <CharacterOption option={person} index={index} key={index}/>
               )
             })}
           </S.ContentCards>

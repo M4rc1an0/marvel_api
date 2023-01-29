@@ -1,6 +1,6 @@
 import * as S from './styles'
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
-import TextParagraph from '../TextParagraph';
+import TextParagraph from '../../atoms/TextParagraph';
 import { UrlObject } from 'url';
 
 type IconProps = {
