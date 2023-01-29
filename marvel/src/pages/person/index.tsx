@@ -7,6 +7,7 @@ import TextParagraph from "../../components/atoms/TextParagraph";
 import LayoutBase from "../../components/templates/LayoutBase";
 import ButtonAction from "../../components/molecules/ButtonAction";
 import Card from "../../components/molecules/Card";
+import personApi from "@/storeConfig/apiSlice";
 
 const Person = () => {
   const [searchPerson, setSearchPerson] = useState<any>();
