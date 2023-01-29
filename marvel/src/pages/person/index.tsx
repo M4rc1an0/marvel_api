@@ -1,13 +1,12 @@
-import api from "@/components/services/api";
+import api from "../../services/api";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import * as S from './styles'
-import CardImage from "@/components/atoms/CardImage";
-import CardContent from "@/components/molecules/CardContent";
-import TextParagraph from "@/components/atoms/TextParagraph";
-import LayoutBase from "@/components/templates/LayoutBase";
-import ButtonAction from "@/components/molecules/ButtonAction";
-import Card from "@/components/molecules/Card";
+import CardImage from "../../components/atoms/CardImage";
+import TextParagraph from "../../components/atoms/TextParagraph";
+import LayoutBase from "../../components/templates/LayoutBase";
+import ButtonAction from "../../components/molecules/ButtonAction";
+import Card from "../../components/molecules/Card";
 
 const Person = () => {
   const [searchPerson, setSearchPerson] = useState<any>();
@@ -18,8 +17,6 @@ const Person = () => {
   useEffect(() => {
     document.title = 'Marvel API';
   }), [];
-
-  console.log(character, 'PERSONAGEM')
 
   const baseURL = character ? `/characters?nameStartsWith=${character}` : '/characters';
 
@@ -34,8 +31,6 @@ const Person = () => {
         setPersonLength(response?.data?.data.total)
       }).catch(() => alert('No character with that name found !!'));
   }, [character]);
-
-  console.log(personLength)
 
   const handleMore = useCallback(async () => {
     try {

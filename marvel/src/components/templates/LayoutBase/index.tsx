@@ -1,5 +1,5 @@
-import FooterDeveloper from '@/components/organisms/FooterDeveloper'
-import HeaderWithHome from '@/components/organisms/HeaderWithHome'
+import FooterDeveloper from '../../organisms/FooterDeveloper'
+import HeaderWithHome from '../../organisms/HeaderWithHome'
 import * as S from './styles'
 
 type LayoutProps = {

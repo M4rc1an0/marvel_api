@@ -1,4 +1,5 @@
 import * as S from './styles'
+import TextField from '@mui/material/TextField';
 
 type InputProps = {
     labelText: string
@@ -7,7 +8,7 @@ type InputProps = {
 
 const InputText = ({labelText, change}: InputProps) => {
     return (
-        <S.InputField size='small' onChange={change} label={labelText} />
+        <TextField size='small' onChange={change} label={labelText} data-testid='input-field'/>
     )
 }
 

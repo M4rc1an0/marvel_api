@@ -1,11 +1,12 @@
 import * as S from "./styles";
-import CardContent from "@/components/molecules/CardContent";
-import TextParagraph from "@/components/atoms/TextParagraph";
-import ButtonAction from "@/components/molecules/ButtonAction";
-import Router from "next/router";
-import LayoutBase from "@/components/templates/LayoutBase";
+import CardContent from "../../components/molecules/CardContent";
+import TextParagraph from "../../components/atoms/TextParagraph";
+import ButtonAction from "../../components/molecules/ButtonAction";
+import LayoutBase from "../../components/templates/LayoutBase";
 
-export const Introduction = () => {
+import Router from "next/router";
+
+const Introduction = () => {
   return (
     <LayoutBase>
       <S.ContentIntroduction>
@@ -35,3 +36,5 @@ export const Introduction = () => {
     </LayoutBase>
   );
 };
+
+export default Introduction

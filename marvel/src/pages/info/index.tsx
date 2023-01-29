@@ -1,9 +1,9 @@
-import CardImage from "@/components/atoms/CardImage";
-import Icon from "@/components/atoms/Icon";
-import TextParagraph from "@/components/atoms/TextParagraph";
-import CardContent from "@/components/molecules/CardContent";
-import api from "@/components/services/api";
-import LayoutBase from "@/components/templates/LayoutBase";
+import CardImage from "../../components/atoms/CardImage";
+import Icon from "../../components/atoms/Icon";
+import TextParagraph from "../../components/atoms/TextParagraph";
+import CardContent from "../../components/molecules/CardContent";
+import LayoutBase from "../../components/templates/LayoutBase";
+import api from "../../services/api";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import * as S from './styles'
@@ -33,8 +33,6 @@ const Info = () => {
             searchInfo()
         }
     },[idPerson])
-
-    console.log(filterSearch, 'FILTERSEARCH')
 
     const redirectSearch = () => {
         if (filterSearch === undefined || filterSearch === 'undefined') {
