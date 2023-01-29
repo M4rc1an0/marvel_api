@@ -1,4 +1,4 @@
-# PROJETO HARRY POTTER
+# PROJETO MARVEL
 
 # SOBRE O PROJETO
 
@@ -22,7 +22,7 @@ React testing library
 # Como executar o projeto
 
 #clonar repositório 
-https://github.com/vrrMarques/Projeto_HarryPotter
+git clone https://github.com/M4rc1an0/marvel_Api
 
 #entrar na pasta do projeto
 cd marvel_api
