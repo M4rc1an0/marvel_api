@@ -3,41 +3,46 @@ import CharacterCard from "../../components/organisms/CharacterCard";
 import List from "../../components/organisms/List";
 import LayoutBase from "../../components/templates/LayoutBase";
 
-import * as S from './styles'
+import * as S from "./styles";
 
-import Router from "next/router";
-import { useAppSelector } from "../../storeConfig/hooks/useAppSelector";
-
+import Router, { useRouter } from "next/router";
 
 import characterApi from "../../storeConfig/apiSlice";
+import { useEffect } from "react";
 
 const Info = () => {
-    const { idCharacter } = useAppSelector((store) => store.personGet)
-    const { data } = characterApi.useGetCharacterSingleQuery(idCharacter)
+  const router = useRouter();
+  const { data } = characterApi.useGetCharacterSingleQuery(router.query.id);
 
-    return (
-        <LayoutBase>
-            <S.ContentInfo>
-                <S.ComeBack onClick={() => Router.push('/person')}>
-                    <Icon type="back" text="Return" typeParagraph="h4" />
-                </S.ComeBack>
-                {data &&
-                    data.data.results.map((character: any, index: any) => {
-                        return (
-                            <S.Column key={index}>
-                                <CharacterCard data={character} />
-                                <S.Appearances>
-                                    <List title='Comics' data={character.comics} />
-                                    <List title='Events' data={character.events} />
-                                    <List title='Series' data={character.series} />
-                                    <List title='Stories' data={character.stories} />
-                                </S.Appearances>
-                            </S.Column>
-                        )
-                    })}
-            </S.ContentInfo>
-        </LayoutBase>
-    );
+  useEffect(() => {
+    document.title = 'Marvel API';
+  })
+
+  return (
+    <LayoutBase>
+      <S.ContentInfo>
+        <S.ComeBack onClick={() => Router.push("/person")}>
+          <Icon type="back" text="Return" typeParagraph="h4" />
+        </S.ComeBack>
+        {data &&
+          data?.data?.results?.map((character: any, index: any) => {
+            return (
+              <div key={character?.id}>
+              <S.Column key={index}>
+                <CharacterCard data={character} />
+                <S.Appearances>
+                  <List title="Comics" data={character.comics} />
+                  <List title="Events" data={character.events} />
+                  <List title="Series" data={character.series} />
+                  <List title="Stories" data={character.stories} />
+                </S.Appearances>
+              </S.Column>
+              </div>
+            );
+          })}
+      </S.ContentInfo>
+    </LayoutBase>
+  );
 };
 
-export default Info
+export default Info;

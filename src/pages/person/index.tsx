@@ -56,7 +56,7 @@ const Person = () => {
 
   const sendInfo = (id: any) => {
     dispatch(changeId(id))
-    router.push('info')
+    router.push(`info?id=${id}`)
   }
 
   return (
