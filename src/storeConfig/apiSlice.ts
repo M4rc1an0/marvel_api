@@ -14,7 +14,7 @@ const characterApi = createApi({
             query: () => `/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}`
         }),
         getCharacterId: builder.query<any, string>({
-            query: (id) => `/characters?nameStartsWith=${id}&ts=${ts}&apikey=${publicKey}&hash=${hash}`
+            query: (id) => `/characters?nameStartsWith=${id ? `${id}` : ' '}&ts=${ts}&apikey=${publicKey}&hash=${hash}`
         }),
         getCharacterSingle: builder.query<any, string>({
             query: (id) => `/characters/${id}?ts=${ts}&apikey=${publicKey}&hash=${hash}`

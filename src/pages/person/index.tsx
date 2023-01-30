@@ -15,7 +15,7 @@ import router from "next/router";
  
 const Person = () => {
   const [searchPerson, setSearchPerson] = useState<any>();
-  const [personLength, setPersonLength] = useState<any>()
+  const [personLength, setPersonLength] = useState<number>();
   const { filter } = useAppSelector((store) => store.personGet)
   const dispatch = useDispatch()
 

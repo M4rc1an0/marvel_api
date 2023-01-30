@@ -14,7 +14,6 @@ export const slice = createSlice({
         changeId(state, {payload}) {
             return {...state, idCharacter: payload}
         }
-
     }
 })
 
