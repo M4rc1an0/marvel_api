@@ -1,5 +1,4 @@
 import { Action, ThunkAction } from '@reduxjs/toolkit'
-import md5 from 'md5';
 import { store } from '.'
 
 export type AppDispatch = typeof store.dispatch;

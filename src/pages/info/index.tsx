@@ -1,59 +1,28 @@
 import Icon from "../../components/molecules/Icon";
-import LayoutBase from "../../components/templates/LayoutBase";
+import CharacterCard from "../../components/organisms/CharacterCard";
 import List from "../../components/organisms/List";
+import LayoutBase from "../../components/templates/LayoutBase";
 
 import * as S from './styles'
 
-import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import Router from "next/router";
+import { useAppSelector } from "../../storeConfig/hooks/useAppSelector";
+
 
 import characterApi from "../../storeConfig/apiSlice";
-import CharacterCard from "../../components/organisms/CharacterCard";
 
 const Info = () => {
-    const [infoPerson, setInfoPerson] = useState([])
-    const [filterSearch, setFilterSearch] = useState<any>('')
-    const [idPerson, setIdPerson] = useState<any>()
-    const router = useRouter();
-
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            setFilterSearch(localStorage?.getItem('person'))
-            setIdPerson(localStorage.getItem('id'));
-        }
-    }, [])
-    
-    const { data } = characterApi.useGetCharacterSingleQuery(idPerson)
-
-    const searchInfo = useCallback(() => {
-        if (data) {
-            setInfoPerson(data?.data?.results)
-        }
-    }, [data])
-
-    useEffect(() => {
-        if (data !== undefined) {
-            searchInfo()
-        }
-    }, [data])
-    
-
-    const redirectSearch = () => {
-        if (filterSearch === undefined || filterSearch === 'undefined') {
-            router.push('/person')
-        } else {
-            router.push(`/person?character=${filterSearch}`)
-        }
-    }
+    const { idCharacter } = useAppSelector((store) => store.personGet)
+    const { data } = characterApi.useGetCharacterSingleQuery(idCharacter)
 
     return (
         <LayoutBase>
             <S.ContentInfo>
-                <S.ComeBack onClick={() => redirectSearch()}>
+                <S.ComeBack onClick={() => Router.push('/person')}>
                     <Icon type="back" text="Return" typeParagraph="h4" />
                 </S.ComeBack>
-                {infoPerson &&
-                    infoPerson.map((character: any, index: any) => {
+                {data &&
+                    data.data.results.map((character: any, index: any) => {
                         return (
                             <S.Column key={index}>
                                 <CharacterCard data={character} />

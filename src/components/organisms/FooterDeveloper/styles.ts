@@ -18,8 +18,3 @@ export const AuthorDeveloper = styled.div`
         }
     }
 `
-
-export const NetworkSocial = styled.div`
-    display: flex;
-    justify-content: space-between;
-`

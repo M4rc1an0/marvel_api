@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
+import Router from "next/router";
+import { useDispatch } from "react-redux";
+import { changeFilter } from "@/storeConfig/slice";
 
 import ButtonAction from "../../molecules/ButtonAction";
 import InputText from "../../molecules/InputText";
@@ -10,18 +12,18 @@ import * as S from "./styles";
 
 const HeaderWithHome = () => {
   const [search, setSearch] = useState('')
-  const router = useRouter();
+  const dispatch = useDispatch()
 
   const submitSearch = () => {
-    router.push(`/person?character=${search}`)
-    localStorage.setItem('person', search);
+    Router.push(`/person`)
+    dispatch(changeFilter(search))
   }
 
   return (
     <Header>
       <S.ContentHeader>
         <Link href="/">
-          <S.ImgLogo src="./marvel-logo.png" alt="marvel" />
+          <S.ImgLogo src="./images/marvel-logo.png" alt="marvel" />
         </Link>
         <S.SearchHero>
           <InputText labelText="Character" change={(e: any) => setSearch(e.target.value)} />

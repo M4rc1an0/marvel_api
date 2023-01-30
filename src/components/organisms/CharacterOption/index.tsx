@@ -14,17 +14,12 @@ type CharacterOptionProps = {
         name: string
     }
     index: string
+    action?: () => void
 }
 
-
-const CharacterOption = ({ option, index }: CharacterOptionProps) => {
-    const router = useRouter();
-
+const CharacterOption = ({ option, index, action }: CharacterOptionProps) => {
     return (
-        <S.CardClick onClick={() => {
-            router.push(`info?id=${option.id}`)
-            localStorage.setItem('id', option.id);
-        }}
+        <S.CardClick onClick={action}
             key={index}
             data-testid='button-card'>
             <Card noBorder>

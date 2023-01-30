@@ -6,13 +6,13 @@ import LayoutBase from "../../components/templates/LayoutBase";
 
 import Router from "next/router";
 
-const Introduction = () => {
+const Introduction = () => {  
   return (
     <LayoutBase>
       <S.ContentIntroduction>
         <CardContent noBorder>
           <S.ContentCard>
-            <S.ImgBackgroundShield src="shield.png" alt="shield-capitao"/>
+            <S.ImgBackgroundShield src="./images/shield.png" alt="shield-capitao"/>
             <TextParagraph type="h1" text="MARVEL API" />
             <TextParagraph
               type="h4"
@@ -30,7 +30,7 @@ const Introduction = () => {
           </S.ContentButtons>
         </CardContent>
         <S.ContentImg>
-          <S.ImgBackground src="iron-man.png" alt="iron-man" />
+          <S.ImgBackground src="./images/iron-man.png" alt="iron-man" />
         </S.ContentImg>
       </S.ContentIntroduction>
     </LayoutBase>

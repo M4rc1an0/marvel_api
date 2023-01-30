@@ -5,40 +5,39 @@ import CharacterOption from "../../components/organisms/CharacterOption";
 
 import * as S from './styles'
 
-import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
-
 import api from "../../services/api";
 import characterApi from "../../storeConfig/apiSlice";
+import { useAppSelector } from "../../storeConfig/hooks/useAppSelector";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { changeId } from "@/storeConfig/slice";
+import router from "next/router";
  
 const Person = () => {
   const [searchPerson, setSearchPerson] = useState<any>();
   const [personLength, setPersonLength] = useState<any>()
-  const router = useRouter();
-  const { character }: any = router.query;
+  const { filter } = useAppSelector((store) => store.personGet)
+  const dispatch = useDispatch()
+
+  const baseURL = filter ? `/characters?nameStartsWith=${filter}` : '/characters';
+
+  const { data: searchCharacters } = characterApi.useGetCharacterIdQuery(filter)
+  const { data: allCharacters } = characterApi.useGetCharactersQuery()
 
   useEffect(() => {
     document.title = 'Marvel API';
-  }), [];
-
-  const baseURL = character ? `/characters?nameStartsWith=${character}` : '/characters';
-
-  const { data: allCharacters } = characterApi.useGetCharactersQuery()
-  const { data: searchCharacters } = characterApi.useGetCharacterIdQuery(character)
+  })
 
   useEffect(() => {
-    localStorage.setItem('person', character);
-  }, [])
-
-  useEffect(() => {
-    if (character) {
+    if (filter) {
       setSearchPerson(searchCharacters?.data?.results)
       setPersonLength(searchCharacters?.data?.total)
-    } else {
+    }
+     else {
       setSearchPerson(allCharacters?.data?.results)
       setPersonLength(allCharacters?.data?.total)
     }
-  },[character, searchCharacters, allCharacters])
+  }, [filter, searchCharacters, allCharacters])
 
   const handleMore = useCallback(async () => {
     try {
@@ -55,6 +54,11 @@ const Person = () => {
     }
   }, [searchPerson])
 
+  const sendInfo = (id: any) => {
+    dispatch(changeId(id))
+    router.push('info')
+  }
+
   return (
     <LayoutBase>
       {searchPerson?.length > 0 ?
@@ -65,7 +69,7 @@ const Person = () => {
           <S.ContentCards>
             {searchPerson?.map((person: any, index: string) => {
               return (
-                <CharacterOption option={person} index={index} key={index}/>
+                <CharacterOption action={() => sendInfo(person.id)}option={person} index={index} key={index}/>
               )
             })}
           </S.ContentCards>

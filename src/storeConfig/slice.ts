@@ -1,19 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 export const slice = createSlice({
-    name: 'personSearch',
+    name: 'filterSearch',
     initialState: {
-        person: '0'
+        filter: '',
+        idCharacter: ''
     },
 
     reducers: {
-        change(state, { payload }) {
-            return {...state, person: payload}
+        changeFilter(state, { payload }) {
+            return {...state, filter: payload}
         },
+        changeId(state, {payload}) {
+            return {...state, idCharacter: payload}
+        }
+
     }
 })
 
-export const { change } = slice.actions
+export const { changeFilter, changeId } = slice.actions
 
 export const selectPerson = (state: { person: any }) => state.person
 

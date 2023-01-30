@@ -19,7 +19,6 @@ export const ContentCard = styled.div`
 `
 
 export const ContentButtons = styled.div`
-    /* width: 50%; */
     margin-top: 50px;
     display: flex;
     justify-content: space-around;
