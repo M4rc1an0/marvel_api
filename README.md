@@ -1,6 +1,13 @@
 # PROJETO MARVEL
+-
+-
+-
+-
+-
+-
+-
 
-# SOBRE O PROJETO
+<h2>SOBRE O PROJETO<h2/>
 
 O projeto Marvel é um projeto Front-End desenvolvido em NEXT.js. 
 
